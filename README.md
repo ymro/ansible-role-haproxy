@@ -41,7 +41,7 @@ HAProxy HTTP frontend configuration directives. If  haproxy_http_redirect is tru
     haproxy_https_frontend_mode: 'http'
     haproxy_ssl_certificate: '/etc/ssl/certs/example.com.pem'
 
-HAProxy HTTPS frontend configuration directives.
+HAProxy HTTPS frontend configuration directives. If haproxy_https_frontend_enabled is true.
 		
     haproxy_backend_default: true
     haproxy_backend_name: 'habackend'
@@ -49,12 +49,12 @@ HAProxy HTTPS frontend configuration directives.
     haproxy_backend_balance_method: 'roundrobin'
     haproxy_backend_httpchk: 'HEAD / HTTP/1.1\r\nHost:localhost'
 
-HAProxy backend configuration directives. If haproxy_backend_default, backend will be setup as this.
+HAProxy backend configuration directives. If haproxy_backend_default is true, backend will be as this.
 
     haproxy_contexts:
      - { name: 'app1', primary_ip: '10.10.10.1', backup_ip: '10.10.10.2', port: '8080' }
 
-HAProxy acls with apropriate backend will be created for defined contexts.
+HAProxy acls with apropriate backend will be created for defined contexts. If haproxy_contexts_enabled is true.
 
     haproxy_backend_servers:
       - name: app1
