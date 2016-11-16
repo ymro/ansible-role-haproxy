@@ -20,7 +20,7 @@ haproxy_https_frontend_mode: 'http'
 haproxy_ssl_certificate: '/etc/ssl/certs/example.com.pem'
 
 # Backend settings. haproxy_backend_default = true means, haproxy_backend_servers will be used.
-haproxy_backend_default: 'false'
+haproxy_backend_default: false
 haproxy_backend_name: 'habackend'
 haproxy_backend_mode: 'http'
 haproxy_backend_balance_method: 'roundrobin'
