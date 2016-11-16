@@ -9,23 +9,25 @@ haproxy_http_frontend_name: 'http-frontend'
 haproxy_http_frontend_bind_address: '*'
 haproxy_http_frontend_port: 80
 haproxy_http_frontend_mode: 'http'
-haproxy_http_redirect: 'true'
+haproxy_http_redirect: true
 
 # HTTPS Frontend settings.
+haproxy_https_frontend_enabled: true
 haproxy_https_frontend_name: 'https-frontend'
 haproxy_https_frontend_bind_address: '*'
 haproxy_https_frontend_port: 443
 haproxy_https_frontend_mode: 'http'
 haproxy_ssl_certificate: '/etc/ssl/certs/example.com.pem'
 
-# Backend settings.
-haproxy_backend_default: true
+# Backend settings. haproxy_backend_default = true means, haproxy_backend_servers will be used.
+haproxy_backend_default: 'false'
 haproxy_backend_name: 'habackend'
 haproxy_backend_mode: 'http'
 haproxy_backend_balance_method: 'roundrobin'
 haproxy_backend_httpchk: 'HEAD / HTTP/1.1\r\nHost:localhost'
 
 # context filters settings
+haproxy_contexts_enabled: true
 haproxy_contexts:
  - { name: 'jira', primary_ip: '192.168.128.106', backup_ip: '10.10.10.2', port: '8080' }
  - { name: 'confluence', primary_ip: '192.168.128.106', backup_ip: '10.10.10.2', port: '8080' }

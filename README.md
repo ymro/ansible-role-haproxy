@@ -27,19 +27,34 @@ The jail directory where chroot() will be performed before dropping privileges. 
 
 The user and group under which HAProxy should run. Only change this if you know what you're doing!
 
-    haproxy_frontend_name: 'hafrontend'
+    haproxy_frontend_name: 'http-frontend'
     haproxy_frontend_bind_address: '*'
     haproxy_frontend_port: 80
     haproxy_frontend_mode: 'http'
+    haproxy_http_redirect: 'true'
 
-HAProxy frontend configuration directives.
+HAProxy HTTP frontend configuration directives. If  haproxy_http_redirect is true, requests will beredirected to https.
 
+    haproxy_https_frontend_name: 'https-frontend'
+    haproxy_https_frontend_bind_address: '*'
+    haproxy_https_frontend_port: 443
+    haproxy_https_frontend_mode: 'http'
+    haproxy_ssl_certificate: '/etc/ssl/certs/example.com.pem'
+
+HAProxy HTTPS frontend configuration directives.
+		
+    haproxy_backend_default: true
     haproxy_backend_name: 'habackend'
     haproxy_backend_mode: 'http'
     haproxy_backend_balance_method: 'roundrobin'
     haproxy_backend_httpchk: 'HEAD / HTTP/1.1\r\nHost:localhost'
 
-HAProxy backend configuration directives.
+HAProxy backend configuration directives. If haproxy_backend_default, backend will be setup as this.
+
+    haproxy_contexts:
+     - { name: 'app1', primary_ip: '10.10.10.1', backup_ip: '10.10.10.2', port: '8080' }
+
+HAProxy acls with apropriate backend will be created for defined contexts.
 
     haproxy_backend_servers:
       - name: app1
