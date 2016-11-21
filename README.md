@@ -51,6 +51,7 @@ HAProxy HTTPS frontend configuration directives. If haproxy_https_frontend_enabl
     haproxy_backend_httpchk: 'HEAD / HTTP/1.1\r\nHost:localhost'
 
 HAProxy backend configuration directives. If haproxy_backend_default is true, backend will be as this.
+
     haproxy_contexts_enabled: true
     haproxy_contexts:
      - { name: 'app1', primary_ip: '10.10.10.1', backup_ip: '10.10.10.2', port: '8080' }
