@@ -22,7 +22,8 @@
   mode: 0640
   owner: root
   group: root
-  when:  haproxy_https_frontend_enabled  == true & haproxy_ssl_certificate_ssl.exist == true
+  when:  haproxy_https_frontend_enabled  == true and haproxy_ssl_certificate_ssl.exist == true
+
 - name: Get HAProxy version.
   command: haproxy -v
   register: haproxy_version_result
