@@ -58,11 +58,24 @@ HAProxy backend configuration directives. If haproxy_backend_default is true, ba
 
 HAProxy acls with apropriate backend will be created for defined contexts. If haproxy_contexts_enabled is true.
 
+
     haproxy_backend_servers:
       - name: app1
         address: 192.168.0.1:80
       - name: app2
         address: 192.168.0.2:80
+
+HAProxy will proxy /  to "backend:/foo"
+    haproxy_default_context: 'foo'
+
+HAProxy optional service definitions.
+
+    optional_service: 
+     - enabled: true
+     - name: sshd
+     - port: 7999
+     - backend_ip: 10.33.179.143
+
 
 A list of backend servers (name and address) to which HAProxy will distribute requests.
 
